@@ -178,14 +178,14 @@ classdef CyclingApp_exported < matlab.apps.AppBase
                 [app.SimResults] = PredSim_Cycling(S);
 
                 % mean power
-                mean_power = nanmean(app.SimResults.CranckPower)*2;
+                mean_power = mean(app.SimResults.CranckPower,'omitnan')*2;
 
                 % print start simulation
                 if app.SimResults.stats.success
 
                     app.LogTextArea.Value = [app.LogTextArea.Value; {'Simulation finished'}];
                     app.LogTextArea.Value = [app.LogTextArea.Value;...
-                        { ['average mechanical power is : ' num2str(nanmean(mean_power)) 'W']}];
+                        { ['average mechanical power is : ' num2str(mean_power) 'W']}];
                     if ~isempty(app.res_store.res_mat)
                         [max_power, imax] = max(app.res_store.res_mat(:,1));
                         record_holder = app.res_store.res_names{imax};
@@ -202,7 +202,7 @@ classdef CyclingApp_exported < matlab.apps.AppBase
 
                     % update score vect
                     if isempty(app.ScoreVect)
-                        app.ScoreVect = nanmean(mean_power);
+                        app.ScoreVect = mean_power;
                     else
                         app.ScoreVect = [app.ScoreVect, mean_power];
                     end
@@ -286,9 +286,9 @@ classdef CyclingApp_exported < matlab.apps.AppBase
                 nFrames = size(rJoints, 3);
 
                 % Axis limits
-                allX = reshape(rJoints(1,:,:), [], 1);
-                allY = reshape(rJoints(2,:,:), [], 1);
-                margin = 0.1 * max([range(allX), range(allY)]);
+                % allX = reshape(rJoints(1,:,:), [], 1);
+                % allY = reshape(rJoints(2,:,:), [], 1);
+                % margin = 0.1 * max([range(allX), range(allY)]);
                 xLimits = [-0.5 0.5];
                 yLimits = [-0.3  1.1];
 
@@ -346,7 +346,7 @@ classdef CyclingApp_exported < matlab.apps.AppBase
                 end
 
                 % Animation
-                dt = nanmean(diff(time));
+                dt = mean(diff(time),'omitnan');
                 
                 t_main = tic;
                 for frame = 1:nFrames
@@ -402,7 +402,7 @@ classdef CyclingApp_exported < matlab.apps.AppBase
             pos = [nrow+1,1];
             
             datainput{1} = namesheet;
-            mean_power = nanmean(app.SimResults.CranckPower)*2;
+            mean_power = mean(app.SimResults.CranckPower,'omitnan')*2;
             datainput{2} = round(mean_power,4);
             datainput{3} = app.CranklengthmSlider.Value;
             datainput{4} = app.SaddleRxSlider.Value;
@@ -439,8 +439,8 @@ classdef CyclingApp_exported < matlab.apps.AppBase
             xlabel(app.ScoreAxis, 'attempts')
             ylabel(app.ScoreAxis, 'power [W]')
             zlabel(app.ScoreAxis, 'Z')
-            % app.ScoreAxis.GridLineWidth = 0.5;
-            % app.ScoreAxis.MinorGridLineWidth = 0.5;
+            app.ScoreAxis.GridLineWidth = 0.5;
+            app.ScoreAxis.MinorGridLineWidth = 0.5;
             app.ScoreAxis.Position = [328 392 298 139];
 
             % Create Visualisation
@@ -449,8 +449,8 @@ classdef CyclingApp_exported < matlab.apps.AppBase
             xlabel(app.Visualisation, 'X [m]')
             ylabel(app.Visualisation, 'Y [m]')
             zlabel(app.Visualisation, 'Z')
-            % app.Visualisation.GridLineWidth = 0.5;
-            % app.Visualisation.MinorGridLineWidth = 0.5;
+            app.Visualisation.GridLineWidth = 0.5;
+            app.Visualisation.MinorGridLineWidth = 0.5;
             app.Visualisation.Position = [16 95 286 395];
 
             % Create CranklengthmSliderLabel
