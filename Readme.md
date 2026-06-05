@@ -4,7 +4,9 @@ This GUI serves as an introductory example of how musculoskeletal modeling and s
 
 The cycling model is based on [[Limiting radial pedal forces greatly reduces maximal power output and efficiency in sprint cycling; an optimal control study | Journal of Applied Physiology | American Physiological Society](https://doi.org/10.1152/japplphysiol.00733.2021)] and runs using either the VU muscle model or the KUL muscle model (https://doi.org/10.1007/s10439-016-1591-9).
 
-## Installation
+You can run this in matlab (origin implementation) or in python. Note that the matlab2python conversion was done by github copilot and not extensively checked:
+
+## Matlab Installation
 
 1. Download or clone this repository.
 
@@ -12,6 +14,29 @@ The cycling model is based on [[Limiting radial pedal forces greatly reduces max
    If you skip this step, the script will attempt to install the correct CasADi version for you.
 
 3. Run `CyclingApp_exported.m`.
+
+## Python installation
+
+open anaconda prompt and create conda environment:
+
+```bash
+conda env create -f environment.yml
+conda activate cycling_gui
+```
+
+go to the instllation folder in your anaconda prompt. In my case:
+
+```bash
+cd C:\Users\mat950\sim\cycling_gui
+```
+
+run the python script
+
+```bash
+python -m cycling_gui 
+```
+
+
 
 ## Notes
 
