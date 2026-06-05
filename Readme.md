@@ -2,7 +2,7 @@
 
 This GUI serves as an introductory example of how musculoskeletal modeling and simulation can help understand cycling movement and support bike design optimization.
 
-The cycling model is based on [[Limiting radial pedal forces greatly reduces maximal power output and efficiency in sprint cycling; an optimal control study | Journal of Applied Physiology | American Physiological Society](https://doi.org/10.1152/japplphysiol.00733.2021)] (but runs here using the VU the KUL muscle model) (https://doi.org/10.1007/s10439-016-1591-9).
+The cycling model is based on [[Limiting radial pedal forces greatly reduces maximal power output and efficiency in sprint cycling; an optimal control study | Journal of Applied Physiology | American Physiological Society](https://doi.org/10.1152/japplphysiol.00733.2021)] (but runs here using the KUL muscle model) (https://doi.org/10.1007/s10439-016-1591-9).
 
 You can run this in matlab (origin implementation) or in python. Note that the matlab2python conversion was done by github copilot and not extensively checked:
 
@@ -35,8 +35,6 @@ run the python script
 ```bash
 python -m cycling_gui 
 ```
-
-
 
 ## Notes
 
